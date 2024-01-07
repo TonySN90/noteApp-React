@@ -1,0 +1,60 @@
+.card__container {
+  width: 90%;
+  margin: 0 auto 0.5rem auto;
+
+  cursor: pointer;
+
+  .card__wrapper {
+    display: flex;
+
+    width: 100%;
+    height: 6rem;
+
+    border-bottom-right-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+    background-color: $color--bg-middle;
+
+    transition: all 0.1s;
+
+    &:hover {
+      background-color: $color--bg-active;
+    }
+
+    .card__wrapper-colorstrip {
+      width: 7px;
+      height: 100%;
+
+      border-bottom-left-radius: $border-radius;
+      border-top-left-radius: $border-radius;
+
+      background-color: $color--primary;
+    }
+
+    .card__wrapper-contentarea {
+      padding-left: 0.5rem;
+
+      h2 {
+        margin: 0;
+        font-size: 1.1rem;
+      }
+
+      .truncation {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 220px;
+      }
+    }
+  }
+
+  .active {
+    background-color: $color--bg-active;
+  }
+}
+
+.info__text {
+  width: 250px;
+  margin: 3rem auto 0;
+  font-size: 1.2rem;
+  color: $color--bg-active;
+}

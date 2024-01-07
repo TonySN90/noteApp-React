@@ -1,0 +1,25 @@
+#header {
+  .header__container {
+    display: flex;
+    justify-content: space-between;
+
+    width: 90%;
+    height: 4rem;
+    margin: auto auto;
+
+    h1 {
+      display: block;
+
+      padding: 0;
+      margin: 0;
+
+      font-size: 2rem;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+  }
+}
