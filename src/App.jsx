@@ -3,60 +3,38 @@ import Header from "./components/Header.jsx";
 import List from "./components/List.jsx";
 import InputField from "./components/InputField.jsx";
 import Alert from "./components/alert.jsx";
-import uuid from "react-uuid";
-import { createDate } from "./utils.jsx";
 
-const data = [
-  {
-    title: "Wäsche waschen",
-    content: "Viel zu tun heute",
-    color: "#eb4d4b",
-    timestamp: createDate(),
-    id: uuid(),
-  },
-  {
-    title: "Wäsche trocken",
-    content: "Viel zu tun heute",
-    color: "#2980b9",
-    timestamp: createDate(),
-    id: uuid(),
-  },
-];
+// const data = [
+//   {
+//     title: "Wäsche waschen",
+//     content: "Viel zu tun heute",
+//     color: "#eb4d4b",
+//     timestamp: 'So: 07.01.2024 - 22:41',
+//     id: crypto.randomUUID(),
+//   },
+// ];
 
 function NoteApp() {
+  const [entries, setNewEntry] = useState([]);
+  // const [newEntryActive, setNewEntryActive] = useState(false);
   const [openInputField, setOpenInputField] = useState(0);
-
-  const [titleInput, setTitleInput] = useState("");
-  const [textInput, setTextInput] = useState("");
-  const [colorInput, setColorInput] = useState("#eb4d4b");
 
   function handleOpenInputfield() {
     setOpenInputField((size) => (size === 0 ? 80 : 0));
   }
 
-  function newEntry() {
-    return {
-      titleInput,
-      textInput,
-      colorInput,
-      id: uuid(),
-      timestamp: createDate(),
-    };
+  function handleAddEntry(entry) {
+    setNewEntry((entries) => [...entries, entry]);
   }
 
   return (
     <>
       <Header onOpenInputField={handleOpenInputfield} />
-      <List outputData={data} />
+      <List outputData={entries} />
       <InputField
         openInputField={openInputField}
         onOpenInputField={handleOpenInputfield}
-        titleInput={titleInput}
-        onTitleInput={setTitleInput}
-        textInput={textInput}
-        onTextInput={setTextInput}
-        colorInput={colorInput}
-        onColorInput={setColorInput}
+        onAddEntry={handleAddEntry}
       />
       <Alert />
     </>

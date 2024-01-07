@@ -3,27 +3,51 @@ import Button from "./button";
 import InputTitle from "./InputTitle";
 import InputTextarea from "./inputTextarea";
 import InputColor from "./InputColor";
+import { createDate } from "../utils";
 
 export default function InputField({
   openInputField,
   onOpenInputField,
-  titleInput,
-  onTitleInput,
-  textInput,
-  onTextInput,
-  colorInput,
-  onColorInput,
+  onAddEntry,
 }) {
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [color, setColor] = useState("#eb4d4b");
+
+  function handleStore(e) {
+    e.preventDefault();
+
+    if (!title || !content) return;
+
+    const newEntry = {
+      title,
+      content,
+      color,
+      timestamp: createDate(),
+      id: crypto.randomUUID(),
+    };
+
+    onAddEntry(newEntry);
+    onOpenInputField();
+    setTitle("");
+    setContent("");
+  }
+
+  function handleCloseForm(e) {
+    e.preventDefault();
+    onOpenInputField();
+  }
+
   return (
-    <section id="inputField" style={{ width: openInputField + "%" }}>
-      <InputTitle titleInput={titleInput} onTitleInput={onTitleInput} />
-      <InputTextarea textInput={textInput} onTextInput={onTextInput} />
+    <form id="inputField" style={{ width: openInputField + "%" }}>
+      <InputTitle titleInput={title} onTitleInput={setTitle} />
+      <InputTextarea textInput={content} onTextInput={setContent} />
       <div className="button__area">
-        <Button buttonTyp="arrow-left" handler={onOpenInputField}></Button>
-        <Button buttonTyp="download"></Button>
-        <Button buttonTyp="trash"></Button>
-        <InputColor colorInput={colorInput} onColorInput={onColorInput} />
+        <Button buttonTyp="arrow-left" handler={handleCloseForm}></Button>
+        <Button buttonTyp="download" handler={handleStore}></Button>
+        {false && <Button buttonTyp="trash"></Button>}
+        <InputColor colorInput={color} onColorInput={setColor} />
       </div>
-    </section>
+    </form>
   );
 }

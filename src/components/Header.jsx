@@ -1,6 +1,6 @@
 import Button from "./button";
 
-export default function Header({ openInputField, onOpenInputField }) {
+export default function Header({ onOpenInputField }) {
   return (
     <section id="header">
       <div className="header__container">
