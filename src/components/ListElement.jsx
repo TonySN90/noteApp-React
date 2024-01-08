@@ -1,3 +1,5 @@
+import { createDate } from "../utils";
+
 export default function ListElement({
   entries,
   element,
@@ -8,8 +10,6 @@ export default function ListElement({
   setContent,
   setColor,
 }) {
-  // const isSelected = selectedEntry.length === 1;
-
   function handleOpenEntry(id) {
     const filteredEntry = entries.find((el) => el.id === id);
     onSelectedEntry(filteredEntry);
@@ -38,7 +38,9 @@ export default function ListElement({
           <div className="card__contentarea-content truncation">
             {element.content}
           </div>
-          <div className="card__contentarea-timestamp">{element.timestamp}</div>
+          <div className="card__contentarea-timestamp">
+            {createDate(element.timestamp)}
+          </div>
         </div>
       </div>
     </div>

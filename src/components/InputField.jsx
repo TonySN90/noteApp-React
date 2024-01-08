@@ -32,7 +32,7 @@ export default function InputField({
       title,
       content,
       color,
-      timestamp: createDate(),
+      timestamp: Date.now(),
       id: crypto.randomUUID(),
     };
 

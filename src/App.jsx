@@ -23,6 +23,7 @@ function NoteApp() {
 
   function handleChangeEntry(entry) {
     setNewEntry(entry);
+    console.log(entries);
   }
 
   return (
