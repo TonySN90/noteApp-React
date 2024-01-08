@@ -56,7 +56,7 @@ export default function InputField({
       <div className="button__area">
         <Button buttonTyp="arrow-left" handler={handleCloseForm}></Button>
         <Button buttonTyp="download" handler={handleStore}></Button>
-        {false && <Button buttonTyp="trash"></Button>}
+        {isSelected && <Button buttonTyp="trash"></Button>}
         <InputColor colorInput={color} onColorInput={setColor} />
       </div>
     </form>

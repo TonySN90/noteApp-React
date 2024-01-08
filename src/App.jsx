@@ -23,7 +23,6 @@ function NoteApp() {
 
   function handleChangeEntry(entry) {
     setNewEntry(entry);
-    console.log(entries);
   }
 
   return (
@@ -46,23 +45,21 @@ function NoteApp() {
         />
       )}
 
-      {openInputField > 0 ? (
-        <InputField
-          openInputField={openInputField}
-          onOpenInputField={handleOpenInputfield}
-          entries={entries}
-          onAddEntry={handleAddEntry}
-          onChangeEntry={handleChangeEntry}
-          selectedEntry={selectedEntry}
-          onSelectedEntry={setSelectedEntry}
-          title={title}
-          setTitle={setTitle}
-          content={content}
-          setContent={setContent}
-          color={color}
-          setColor={setColor}
-        />
-      ) : null}
+      <InputField
+        openInputField={openInputField}
+        onOpenInputField={handleOpenInputfield}
+        entries={entries}
+        onAddEntry={handleAddEntry}
+        onChangeEntry={handleChangeEntry}
+        selectedEntry={selectedEntry}
+        onSelectedEntry={setSelectedEntry}
+        title={title}
+        setTitle={setTitle}
+        content={content}
+        setContent={setContent}
+        color={color}
+        setColor={setColor}
+      />
 
       <Alert />
     </>
