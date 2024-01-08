@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Button from "./button";
 import InputTitle from "./InputTitle";
 import InputTextarea from "./inputTextarea";
@@ -8,7 +7,9 @@ import { createDate } from "../utils";
 export default function InputField({
   openInputField,
   onOpenInputField,
+  entries,
   onAddEntry,
+  onChangeEntry,
   selectedEntry,
   onSelectedEntry,
   title,
@@ -18,17 +19,14 @@ export default function InputField({
   color,
   setColor,
 }) {
-  // const [title, setTitle] = useState("");
-  // const [content, setContent] = useState("");
-  // const [color, setColor] = useState("#eb4d4b");
-
   const isSelected = Object.keys(selectedEntry).length !== 0;
-  console.log(isSelected);
+  const withoutEntry = entries.filter((entry) => entry !== selectedEntry);
 
   function handleStore(e) {
     e.preventDefault();
 
     if (!title || !content) return;
+    if (isSelected) onChangeEntry(withoutEntry);
 
     const newEntry = {
       title,

@@ -21,6 +21,10 @@ function NoteApp() {
     setNewEntry((entries) => [...entries, entry]);
   }
 
+  function handleChangeEntry(entry) {
+    setNewEntry(entry);
+  }
+
   return (
     <>
       <Header onOpenInputField={handleOpenInputfield} />
@@ -41,11 +45,13 @@ function NoteApp() {
         />
       )}
 
-      {openInputField > 0 && (
+      {openInputField > 0 ? (
         <InputField
           openInputField={openInputField}
           onOpenInputField={handleOpenInputfield}
+          entries={entries}
           onAddEntry={handleAddEntry}
+          onChangeEntry={handleChangeEntry}
           selectedEntry={selectedEntry}
           onSelectedEntry={setSelectedEntry}
           title={title}
@@ -55,7 +61,7 @@ function NoteApp() {
           color={color}
           setColor={setColor}
         />
-      )}
+      ) : null}
 
       <Alert />
     </>
