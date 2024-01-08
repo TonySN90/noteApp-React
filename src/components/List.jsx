@@ -38,7 +38,7 @@ export default function List({
     <>
       {entries
         .slice()
-        .sort((a, b) => b.id - a.id)
+        .sort((a, b) => b.timestamp - a.timestamp)
         .map((el) => (
           <ListElement
             entries={entries}
