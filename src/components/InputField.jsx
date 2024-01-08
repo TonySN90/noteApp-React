@@ -9,10 +9,21 @@ export default function InputField({
   openInputField,
   onOpenInputField,
   onAddEntry,
+  selectedEntry,
+  onSelectedEntry,
+  title,
+  setTitle,
+  content,
+  setContent,
+  color,
+  setColor,
 }) {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [color, setColor] = useState("#eb4d4b");
+  // const [title, setTitle] = useState("");
+  // const [content, setContent] = useState("");
+  // const [color, setColor] = useState("#eb4d4b");
+
+  const isSelected = Object.keys(selectedEntry).length !== 0;
+  console.log(isSelected);
 
   function handleStore(e) {
     e.preventDefault();
@@ -31,11 +42,13 @@ export default function InputField({
     onOpenInputField();
     setTitle("");
     setContent("");
+    onSelectedEntry({});
   }
 
   function handleCloseForm(e) {
     e.preventDefault();
     onOpenInputField();
+    onSelectedEntry({});
   }
 
   return (

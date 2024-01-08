@@ -4,20 +4,14 @@ import List from "./components/List.jsx";
 import InputField from "./components/InputField.jsx";
 import Alert from "./components/alert.jsx";
 
-// const data = [
-//   {
-//     title: "Wäsche waschen",
-//     content: "Viel zu tun heute",
-//     color: "#eb4d4b",
-//     timestamp: 'So: 07.01.2024 - 22:41',
-//     id: crypto.randomUUID(),
-//   },
-// ];
-
 function NoteApp() {
   const [entries, setNewEntry] = useState([]);
-  // const [newEntryActive, setNewEntryActive] = useState(false);
   const [openInputField, setOpenInputField] = useState(0);
+  const [selectedEntry, setSelectedEntry] = useState({});
+
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [color, setColor] = useState("#eb4d4b");
 
   function handleOpenInputfield() {
     setOpenInputField((size) => (size === 0 ? 80 : 0));
@@ -30,12 +24,39 @@ function NoteApp() {
   return (
     <>
       <Header onOpenInputField={handleOpenInputfield} />
-      <List outputData={entries} />
-      <InputField
-        openInputField={openInputField}
-        onOpenInputField={handleOpenInputfield}
-        onAddEntry={handleAddEntry}
-      />
+
+      {entries.length === 0 ? (
+        <div className="info__text">
+          Es ist noch keine Notiz vorhanden. Erstelle doch gleich einen Eintrag!
+        </div>
+      ) : (
+        <List
+          entries={entries}
+          selectedEntry={selectedEntry}
+          onSelectedEntry={setSelectedEntry}
+          onOpenInputField={handleOpenInputfield}
+          setTitle={setTitle}
+          setContent={setContent}
+          setColor={setColor}
+        />
+      )}
+
+      {openInputField > 0 && (
+        <InputField
+          openInputField={openInputField}
+          onOpenInputField={handleOpenInputfield}
+          onAddEntry={handleAddEntry}
+          selectedEntry={selectedEntry}
+          onSelectedEntry={setSelectedEntry}
+          title={title}
+          setTitle={setTitle}
+          content={content}
+          setContent={setContent}
+          color={color}
+          setColor={setColor}
+        />
+      )}
+
       <Alert />
     </>
   );

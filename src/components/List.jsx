@@ -1,17 +1,29 @@
 import ListElement from "./ListElement";
 
-export default function List({ outputData }) {
+export default function List({
+  entries,
+  selectedEntry,
+  onSelectedEntry,
+  onOpenInputField,
+  setTitle,
+  setContent,
+  setColor,
+}) {
   return (
     <>
-      {outputData.map((el) => (
-        <ListElement element={el} key={el.id} />
+      {entries.map((el) => (
+        <ListElement
+          entries={entries}
+          element={el}
+          key={el.id}
+          selectedEntry={selectedEntry}
+          onSelectedEntry={onSelectedEntry}
+          onOpenInputField={onOpenInputField}
+          setTitle={setTitle}
+          setContent={setContent}
+          setColor={setColor}
+        />
       ))}
-
-      <section id="cards">
-        <div className="info__text hidden">
-          Es ist noch keine Notiz vorhanden. Erstelle doch gleich einen Eintrag!
-        </div>
-      </section>
     </>
   );
 }
