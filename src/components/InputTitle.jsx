@@ -1,4 +1,4 @@
-export default function InputTitle({ titleInput, onTitleInput }) {
+function InputTitle({ titleInput, onTitleInput }) {
   return (
     <input
       type="text"
@@ -10,3 +10,5 @@ export default function InputTitle({ titleInput, onTitleInput }) {
     ></input>
   );
 }
+
+export default InputTitle;

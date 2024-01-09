@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import Button from "./button";
 import InputTitle from "./InputTitle";
@@ -6,19 +7,16 @@ import InputColor from "./InputColor";
 import Alert from "./Alert";
 
 export default function InputField({
-  openInputField,
-  onOpenInputField,
-  entries,
-  onAddEntry,
-  selectedEntry,
-  onSelectedEntry,
-  title,
-  setTitle,
-  content,
-  setContent,
-  color,
-  setColor,
+  openFormStates,
+  inputsStates,
+  entriesStates,
 }) {
+  const { openForm, handleOpenForm } = openFormStates;
+  const { title, content, color, setTitle, setContent, setColor } =
+    inputsStates;
+  const { entries, handleAddEntry, selectedEntry, setSelectedEntry } =
+    entriesStates;
+
   const [alertMessage, setAlertMessage] = useState("");
   const [alertOpacity, setAlertOpacity] = useState(0);
   const isSelected = Object.keys(selectedEntry).length !== 0;
@@ -26,24 +24,38 @@ export default function InputField({
 
   function closeForm(e) {
     e.preventDefault();
-    onOpenInputField();
+    handleOpenForm();
     setTitle("");
     setContent("");
-    onSelectedEntry({});
+    setSelectedEntry({});
   }
 
   function handleStore(e) {
     e.preventDefault();
 
-    const newEntry = {
-      title,
-      content,
-      color,
-      timestamp: Date.now(),
-      id: crypto.randomUUID(),
-    };
-
     const pattern = /^\s*$/;
+
+    if (pattern.test(title)) {
+      showAlert("Gib einen gültigen Titel ein");
+    } else if (pattern.test(content)) {
+      showAlert("Gib eine gültige Notiz ein");
+    } else {
+      const newEntry = {
+        title,
+        content,
+        color,
+        timestamp: Date.now(),
+        id: crypto.randomUUID(),
+      };
+
+      handleAddEntry((entries) =>
+        isSelected
+          ? [...withoutEntry, { ...newEntry, id: selectedEntry.id }]
+          : [...entries, newEntry]
+      );
+
+      closeForm(e);
+    }
 
     function showAlert(message) {
       setAlertMessage(message);
@@ -52,19 +64,6 @@ export default function InputField({
         setAlertOpacity(0);
       }, 2500);
     }
-
-    if (pattern.test(title)) {
-      showAlert("Gib einen gültigen Titel ein");
-    } else if (pattern.test(content)) {
-      showAlert("Gib eine gültige Notiz ein");
-    } else {
-      onAddEntry((entries) =>
-        isSelected
-          ? [...withoutEntry, { ...newEntry, id: selectedEntry.id }]
-          : [...entries, newEntry]
-      );
-      closeForm(e);
-    }
   }
 
   function handleCloseForm(e) {
@@ -72,7 +71,7 @@ export default function InputField({
   }
 
   function handleDelete(e) {
-    onAddEntry([...withoutEntry]);
+    handleAddEntry([...withoutEntry]);
     closeForm(e);
   }
 
@@ -80,8 +79,8 @@ export default function InputField({
     <form
       id="inputField"
       style={{
-        width: openInputField + "%",
-        borderLeft: `${openInputField / 18}px solid #eb4d4b`,
+        width: openForm + "%",
+        borderLeft: `${openForm / 18}px solid #eb4d4b`,
       }}
     >
       <InputTitle titleInput={title} onTitleInput={setTitle} />
@@ -92,7 +91,7 @@ export default function InputField({
         {isSelected && (
           <Button buttonTyp="trash" handler={handleDelete}></Button>
         )}
-        <InputColor colorInput={color} onColorInput={setColor} />
+        <InputColor color={color} onColor={setColor} />
       </div>
       <Alert message={alertMessage} opacityValue={alertOpacity} />
     </form>

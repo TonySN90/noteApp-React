@@ -1,19 +1,18 @@
 import { createDate } from "../utils";
 
 export default function ListElement({
-  entries,
   element,
-  selectedEntry,
-  onSelectedEntry,
-  onOpenInputField,
-  setTitle,
-  setContent,
-  setColor,
+  handleOpenForm,
+  inputsStates,
+  entriesStates,
 }) {
+  const { setTitle, setContent, setColor } = inputsStates;
+  const { entries, setSelectedEntry } = entriesStates;
+
   function handleOpenEntry(id) {
     const filteredEntry = entries.find((el) => el.id === id);
-    onSelectedEntry(filteredEntry);
-    onOpenInputField();
+    setSelectedEntry(filteredEntry);
+    handleOpenForm();
 
     setTitle(filteredEntry.title);
     setContent(filteredEntry.content);

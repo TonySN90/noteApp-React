@@ -5,15 +5,15 @@ import InputField from "./components/InputField.jsx";
 
 function NoteApp() {
   const [entries, setNewEntry] = useState([]);
-  const [openInputField, setOpenInputField] = useState(0);
+  const [openForm, setOpenForm] = useState(0);
   const [selectedEntry, setSelectedEntry] = useState({});
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [color, setColor] = useState("#eb4d4b");
 
-  function handleOpenInputfield() {
-    setOpenInputField((size) => (size === 0 ? 80 : 0));
+  function handleOpenForm() {
+    setOpenForm((size) => (size === 0 ? 80 : 0));
   }
 
   function handleAddEntry(entry) {
@@ -22,7 +22,7 @@ function NoteApp() {
 
   return (
     <>
-      <Header onOpenInputField={handleOpenInputfield} />
+      <Header handleOpenForm={handleOpenForm} />
 
       {entries.length === 0 ? (
         <div className="info__text">
@@ -30,29 +30,25 @@ function NoteApp() {
         </div>
       ) : (
         <List
-          entries={entries}
-          selectedEntry={selectedEntry}
-          onSelectedEntry={setSelectedEntry}
-          onOpenInputField={handleOpenInputfield}
-          setTitle={setTitle}
-          setContent={setContent}
-          setColor={setColor}
+          handleOpenForm={handleOpenForm}
+          inputsStates={{ setTitle, setContent, setColor }}
+          entriesStates={{ entries, setSelectedEntry }}
         />
       )}
 
       <InputField
-        openInputField={openInputField}
-        onOpenInputField={handleOpenInputfield}
-        entries={entries}
-        onAddEntry={handleAddEntry}
-        selectedEntry={selectedEntry}
-        onSelectedEntry={setSelectedEntry}
-        title={title}
-        setTitle={setTitle}
-        content={content}
-        setContent={setContent}
-        color={color}
-        setColor={setColor}
+        colorTest={color}
+        onColor={setColor}
+        openInputField={openForm}
+        onOpenInputField={handleOpenForm}
+        openFormStates={{ openForm, handleOpenForm }}
+        inputsStates={{ title, setTitle, content, setContent, color, setColor }}
+        entriesStates={{
+          entries,
+          handleAddEntry,
+          selectedEntry,
+          setSelectedEntry,
+        }}
       />
     </>
   );
