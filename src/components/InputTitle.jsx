@@ -1,8 +1,4 @@
-export default function InputTitle({
-  titleInput,
-  onTitleInput,
-  selectedEntry,
-}) {
+export default function InputTitle({ titleInput, onTitleInput }) {
   return (
     <input
       type="text"

@@ -2,7 +2,6 @@ import { useState } from "react";
 import Header from "./components/Header.jsx";
 import List from "./components/List.jsx";
 import InputField from "./components/InputField.jsx";
-import Alert from "./components/alert.jsx";
 
 function NoteApp() {
   const [entries, setNewEntry] = useState([]);
@@ -18,10 +17,6 @@ function NoteApp() {
   }
 
   function handleAddEntry(entry) {
-    setNewEntry((entries) => [...entries, entry]);
-  }
-
-  function handleChangeEntry(entry) {
     setNewEntry(entry);
   }
 
@@ -50,7 +45,6 @@ function NoteApp() {
         onOpenInputField={handleOpenInputfield}
         entries={entries}
         onAddEntry={handleAddEntry}
-        onChangeEntry={handleChangeEntry}
         selectedEntry={selectedEntry}
         onSelectedEntry={setSelectedEntry}
         title={title}
@@ -60,8 +54,6 @@ function NoteApp() {
         color={color}
         setColor={setColor}
       />
-
-      <Alert />
     </>
   );
 }

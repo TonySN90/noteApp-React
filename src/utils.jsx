@@ -17,3 +17,15 @@ export const createDate = function (dateString) {
   }
   return `${weekday}: ${day}.${month}.${year} - ${hour}:${minutes}`;
 };
+
+function displayAlert(text) {
+  alert.innerHTML =
+    text === "title"
+      ? "Gib einen gültigen Titel ein!"
+      : "Gib eine gültige Notiz ein!";
+
+  alert.style.opacity = "1";
+  setTimeout(() => {
+    alert.style.opacity = "0";
+  }, 2500);
+}
