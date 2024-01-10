@@ -1,3 +1,5 @@
+import { STORAGE_KEY } from "./config";
+
 export const createDate = function (dateString) {
   const currentDate = new Date(dateString);
 
@@ -16,3 +18,12 @@ export const createDate = function (dateString) {
   }
   return `${weekday}: ${day}.${month}.${year} - ${hour}:${minutes}`;
 };
+
+export function safeToLocalStorage(entry) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(entry));
+}
+
+export function getListFromStorage(setNewEntry) {
+  const storageList = JSON.parse(localStorage.getItem(STORAGE_KEY));
+  if (storageList) setNewEntry(storageList);
+}

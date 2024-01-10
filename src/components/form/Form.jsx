@@ -43,7 +43,13 @@ function Form({ openFormStates, inputsStates, entriesStates }) {
         id: crypto.randomUUID(),
       };
 
-      adjustEntries((entries) =>
+      // adjustEntries((entries) =>
+      //   isSelected
+      //     ? [...filteredEntries, { ...newEntry, id: selectedEntry.id }]
+      //     : [...entries, newEntry]
+      // );
+
+      adjustEntries(
         isSelected
           ? [...filteredEntries, { ...newEntry, id: selectedEntry.id }]
           : [...entries, newEntry]

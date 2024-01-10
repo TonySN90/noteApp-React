@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./header/Header.jsx";
 import NoteList from "./list/NoteList.jsx";
 import Form from "./form/Form.jsx";
+import { getListFromStorage, safeToLocalStorage } from "../utils.jsx";
+import { DEFAULT_COLOR } from "../config.jsx";
 
 function NoteApp() {
   const [entries, setNewEntry] = useState([]);
@@ -10,7 +12,11 @@ function NoteApp() {
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [color, setColor] = useState("#eb4d4b");
+  const [color, setColor] = useState(DEFAULT_COLOR);
+
+  useEffect(() => {
+    getListFromStorage(setNewEntry);
+  }, []);
 
   function handleVisibilityForm() {
     setVisibilityForm((open) => !open);
@@ -18,6 +24,7 @@ function NoteApp() {
 
   function adjustEntries(entry) {
     setNewEntry(entry);
+    safeToLocalStorage(entry);
   }
 
   return (
