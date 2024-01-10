@@ -1,6 +1,10 @@
 import ListElement from "./ListElement";
 
-export default function List({ handleOpenForm, inputsStates, entriesStates }) {
+export default function List({
+  handleVisibilityForm,
+  inputsStates,
+  entriesStates,
+}) {
   const { entries } = entriesStates;
   return (
     <>
@@ -11,7 +15,7 @@ export default function List({ handleOpenForm, inputsStates, entriesStates }) {
           <ListElement
             element={el}
             key={el.id}
-            handleOpenForm={handleOpenForm}
+            handleVisibilityForm={handleVisibilityForm}
             inputsStates={inputsStates}
             entriesStates={entriesStates}
           />

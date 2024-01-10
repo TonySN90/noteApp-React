@@ -1,12 +1,12 @@
 import Button from "./button";
 
-export default function Header({ handleOpenForm }) {
+export default function Header({ handleVisibilityForm }) {
   return (
     <section id="header">
       <div className="header__container">
         <h1>NoteApp</h1>
         <div className="navbar">
-          <Button buttonTyp="plus" handler={handleOpenForm}></Button>
+          <Button buttonTyp="plus" handler={handleVisibilityForm}></Button>
         </div>
       </div>
     </section>

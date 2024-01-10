@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useState } from "react";
 import Button from "./button";
 import InputTitle from "./InputTitle";
@@ -6,25 +5,21 @@ import InputTextarea from "./inputTextarea";
 import InputColor from "./InputColor";
 import Alert from "./Alert";
 
-export default function InputField({
-  openFormStates,
-  inputsStates,
-  entriesStates,
-}) {
-  const { openForm, handleOpenForm } = openFormStates;
+export default function Form({ openFormStates, inputsStates, entriesStates }) {
+  const { visibilityForm, handleVisibilityForm } = openFormStates;
   const { title, content, color, setTitle, setContent, setColor } =
     inputsStates;
-  const { entries, handleAddEntry, selectedEntry, setSelectedEntry } =
+  const { entries, adjustEntries, selectedEntry, setSelectedEntry } =
     entriesStates;
 
   const [alertMessage, setAlertMessage] = useState("");
   const [alertOpacity, setAlertOpacity] = useState(0);
   const isSelected = Object.keys(selectedEntry).length !== 0;
-  const withoutEntry = entries.filter((entry) => entry !== selectedEntry);
+  const filteredEntries = entries.filter((entry) => entry !== selectedEntry);
 
   function closeForm(e) {
     e.preventDefault();
-    handleOpenForm();
+    handleVisibilityForm();
     setTitle("");
     setContent("");
     setSelectedEntry({});
@@ -48,9 +43,9 @@ export default function InputField({
         id: crypto.randomUUID(),
       };
 
-      handleAddEntry((entries) =>
+      adjustEntries((entries) =>
         isSelected
-          ? [...withoutEntry, { ...newEntry, id: selectedEntry.id }]
+          ? [...filteredEntries, { ...newEntry, id: selectedEntry.id }]
           : [...entries, newEntry]
       );
 
@@ -66,12 +61,8 @@ export default function InputField({
     }
   }
 
-  function handleCloseForm(e) {
-    closeForm(e);
-  }
-
   function handleDelete(e) {
-    handleAddEntry([...withoutEntry]);
+    adjustEntries([...filteredEntries]);
     closeForm(e);
   }
 
@@ -79,14 +70,14 @@ export default function InputField({
     <form
       id="inputField"
       style={{
-        width: openForm + "%",
-        borderLeft: `${openForm / 18}px solid #eb4d4b`,
+        width: visibilityForm + "%",
+        borderLeft: `${visibilityForm / 18}px solid #eb4d4b`,
       }}
     >
       <InputTitle titleInput={title} onTitleInput={setTitle} />
       <InputTextarea textInput={content} onTextInput={setContent} />
       <div className="button__area">
-        <Button buttonTyp="arrow-left" handler={handleCloseForm}></Button>
+        <Button buttonTyp="arrow-left" handler={closeForm}></Button>
         <Button buttonTyp="download" handler={handleStore}></Button>
         {isSelected && (
           <Button buttonTyp="trash" handler={handleDelete}></Button>

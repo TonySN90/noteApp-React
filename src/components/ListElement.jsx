@@ -2,17 +2,17 @@ import { createDate } from "../utils";
 
 export default function ListElement({
   element,
-  handleOpenForm,
+  handleVisibilityForm,
   inputsStates,
   entriesStates,
 }) {
   const { setTitle, setContent, setColor } = inputsStates;
   const { entries, setSelectedEntry } = entriesStates;
 
-  function handleOpenEntry(id) {
+  function handleSelectedEntry(id) {
     const filteredEntry = entries.find((el) => el.id === id);
     setSelectedEntry(filteredEntry);
-    handleOpenForm();
+    handleVisibilityForm();
 
     setTitle(filteredEntry.title);
     setContent(filteredEntry.content);
@@ -23,7 +23,7 @@ export default function ListElement({
     <div
       className="card__container"
       data-id={element.id}
-      onClick={() => handleOpenEntry(element.id)}
+      onClick={() => handleSelectedEntry(element.id)}
     >
       <div className="card__wrapper">
         <div

@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import NoteApp from "./App.jsx";
+import App from "./App";
 import "./scss/main.scss";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <NoteApp />
+    <App />
   </React.StrictMode>
 );

@@ -1,5 +1,4 @@
 export const createDate = function (dateString) {
-  // const currentDate = new Date();
   const currentDate = new Date(dateString);
 
   const days = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"];
