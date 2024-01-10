@@ -1,4 +1,4 @@
-export default function InputTextarea({ textInput, onTextInput }) {
+function InputTextarea({ textInput, onTextInput }) {
   return (
     <textarea
       id="input__content"
@@ -8,3 +8,5 @@ export default function InputTextarea({ textInput, onTextInput }) {
     ></textarea>
   );
 }
+
+export default InputTextarea;

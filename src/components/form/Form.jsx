@@ -5,7 +5,7 @@ import InputTextarea from "./inputTextarea";
 import InputColor from "./InputColor";
 import Alert from "../elements/Alert";
 
-export default function Form({ openFormStates, inputsStates, entriesStates }) {
+function Form({ openFormStates, inputsStates, entriesStates }) {
   const { visibilityForm, handleVisibilityForm } = openFormStates;
   const { title, content, color, setTitle, setContent, setColor } =
     inputsStates;
@@ -67,13 +67,7 @@ export default function Form({ openFormStates, inputsStates, entriesStates }) {
   }
 
   return (
-    <form
-      id="inputField"
-      style={{
-        width: visibilityForm + "%",
-        borderLeft: `${visibilityForm / 18}px solid #eb4d4b`,
-      }}
-    >
+    <form id="form" className={visibilityForm ? "form-open" : "form-close"}>
       <InputTitle titleInput={title} onTitleInput={setTitle} />
       <InputTextarea textInput={content} onTextInput={setContent} />
       <div className="button__area">
@@ -88,3 +82,5 @@ export default function Form({ openFormStates, inputsStates, entriesStates }) {
     </form>
   );
 }
+
+export default Form;

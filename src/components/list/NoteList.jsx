@@ -1,10 +1,6 @@
 import ListElement from "./ListElement";
 
-export default function List({
-  handleVisibilityForm,
-  inputsStates,
-  entriesStates,
-}) {
+function NoteList({ handleVisibilityForm, inputsStates, entriesStates }) {
   const { entries } = entriesStates;
   return (
     <>
@@ -23,3 +19,5 @@ export default function List({
     </>
   );
 }
+
+export default NoteList;

@@ -1,6 +1,6 @@
 import { createDate } from "../../utils";
 
-export default function ListElement({
+function ListElement({
   element,
   handleVisibilityForm,
   inputsStates,
@@ -45,3 +45,5 @@ export default function ListElement({
     </div>
   );
 }
+
+export default ListElement;

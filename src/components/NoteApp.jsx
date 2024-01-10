@@ -1,11 +1,11 @@
 import { useState } from "react";
 import Header from "./header/Header.jsx";
-import List from "./list/List.jsx";
+import NoteList from "./list/NoteList.jsx";
 import Form from "./form/Form.jsx";
 
 function NoteApp() {
   const [entries, setNewEntry] = useState([]);
-  const [visibilityForm, setVisibilityForm] = useState(0);
+  const [visibilityForm, setVisibilityForm] = useState(false);
   const [selectedEntry, setSelectedEntry] = useState({});
 
   const [title, setTitle] = useState("");
@@ -13,7 +13,7 @@ function NoteApp() {
   const [color, setColor] = useState("#eb4d4b");
 
   function handleVisibilityForm() {
-    setVisibilityForm((size) => (size === 0 ? 80 : 0));
+    setVisibilityForm((open) => !open);
   }
 
   function adjustEntries(entry) {
@@ -29,8 +29,8 @@ function NoteApp() {
           Es ist noch keine Notiz vorhanden. Erstelle doch gleich einen Eintrag!
         </div>
       ) : (
-        <List
-          handleVisibilityForm={setVisibilityForm}
+        <NoteList
+          handleVisibilityForm={handleVisibilityForm}
           inputsStates={{ setTitle, setContent, setColor }}
           entriesStates={{ entries, setSelectedEntry }}
         />

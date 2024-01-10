@@ -1,6 +1,6 @@
 import Button from "../elements/Button";
 
-export default function Header({ handleVisibilityForm }) {
+function Header({ handleVisibilityForm }) {
   return (
     <section id="header">
       <div className="header__container">
@@ -12,3 +12,4 @@ export default function Header({ handleVisibilityForm }) {
     </section>
   );
 }
+export default Header;

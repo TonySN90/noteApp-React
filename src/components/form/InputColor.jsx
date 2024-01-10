@@ -1,4 +1,4 @@
-export default function InputColor({ color, onColor }) {
+function InputColor({ color, onColor }) {
   return (
     <input
       type="color"
@@ -8,3 +8,5 @@ export default function InputColor({ color, onColor }) {
     ></input>
   );
 }
+
+export default InputColor;
