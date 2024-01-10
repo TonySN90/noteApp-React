@@ -43,12 +43,6 @@ function Form({ openFormStates, inputsStates, entriesStates }) {
         id: crypto.randomUUID(),
       };
 
-      // adjustEntries((entries) =>
-      //   isSelected
-      //     ? [...filteredEntries, { ...newEntry, id: selectedEntry.id }]
-      //     : [...entries, newEntry]
-      // );
-
       adjustEntries(
         isSelected
           ? [...filteredEntries, { ...newEntry, id: selectedEntry.id }]
@@ -77,11 +71,9 @@ function Form({ openFormStates, inputsStates, entriesStates }) {
       <InputTitle titleInput={title} onTitleInput={setTitle} />
       <InputTextarea textInput={content} onTextInput={setContent} />
       <div className="button__area">
-        <Button buttonTyp="arrow-left" handler={closeForm}></Button>
-        <Button buttonTyp="download" handler={handleStore}></Button>
-        {isSelected && (
-          <Button buttonTyp="trash" handler={handleDelete}></Button>
-        )}
+        <Button buttonTyp="arrow-left" handler={closeForm} />
+        <Button buttonTyp="download" handler={handleStore} />
+        {isSelected && <Button buttonTyp="trash" handler={handleDelete} />}
         <InputColor color={color} onColor={setColor} />
       </div>
       <Alert message={alertMessage} opacityValue={alertOpacity} />
