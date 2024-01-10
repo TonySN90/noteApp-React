@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Button from "./button";
+import Button from "../elements/Button";
 import InputTitle from "./InputTitle";
 import InputTextarea from "./inputTextarea";
 import InputColor from "./InputColor";
-import Alert from "./Alert";
+import Alert from "../elements/Alert";
 
 export default function Form({ openFormStates, inputsStates, entriesStates }) {
   const { visibilityForm, handleVisibilityForm } = openFormStates;

@@ -1,4 +1,4 @@
-import Button from "./button";
+import Button from "../elements/Button";
 
 export default function Header({ handleVisibilityForm }) {
   return (

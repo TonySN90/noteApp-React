@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Header from "./Header";
-import List from "./List.jsx";
-import Form from "./Form.jsx";
+import Header from "./form/Header.jsx";
+import List from "./list/List.jsx";
+import Form from "./form/Form.jsx";
 
 function NoteApp() {
   const [entries, setNewEntry] = useState([]);
