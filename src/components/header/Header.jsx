@@ -1,13 +1,11 @@
 import Button from "../elements/Button";
 
-function Header({ handleVisibilityForm }) {
+function Header({ children }) {
   return (
     <section id="header">
       <div className="header__container">
         <h1>NoteApp</h1>
-        <div className="navbar">
-          <Button buttonTyp="plus" handler={handleVisibilityForm}></Button>
-        </div>
+        <div className="navbar">{children}</div>
       </div>
     </section>
   );

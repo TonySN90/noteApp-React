@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import Header from "./header/Header.jsx";
 import NoteList from "./list/NoteList.jsx";
 import Form from "./form/Form.jsx";
+import Button from "./elements/Button.jsx";
+import StartMessage from "./elements/startMessage.jsx";
 import { getListFromStorage, safeToLocalStorage } from "../utils.jsx";
 import { DEFAULT_COLOR } from "../config.jsx";
 
@@ -29,12 +31,12 @@ function NoteApp() {
 
   return (
     <>
-      <Header handleVisibilityForm={handleVisibilityForm} />
+      <Header>
+        <Button buttonTyp="plus" handler={handleVisibilityForm} />
+      </Header>
 
       {entries.length === 0 ? (
-        <div className="info__text">
-          Es ist noch keine Notiz vorhanden. Erstelle doch gleich einen Eintrag!
-        </div>
+        <StartMessage />
       ) : (
         <NoteList
           handleVisibilityForm={handleVisibilityForm}
