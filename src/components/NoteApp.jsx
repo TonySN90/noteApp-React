@@ -3,7 +3,6 @@ import Header from "./header/Header.jsx";
 import NoteList from "./list/NoteList.jsx";
 import Form from "./form/Form.jsx";
 import Button from "./elements/Button.jsx";
-import StartMessage from "./elements/startMessage.jsx";
 import { getListFromStorage, safeToLocalStorage } from "../utils.jsx";
 import { DEFAULT_COLOR } from "../config.jsx";
 
@@ -35,15 +34,11 @@ function NoteApp() {
         <Button buttonTyp="plus" handler={handleVisibilityForm} />
       </Header>
 
-      {entries.length === 0 ? (
-        <StartMessage />
-      ) : (
-        <NoteList
-          handleVisibilityForm={handleVisibilityForm}
-          inputsStates={{ setTitle, setContent, setColor }}
-          entriesStates={{ entries, setSelectedEntry }}
-        />
-      )}
+      <NoteList
+        handleVisibilityForm={handleVisibilityForm}
+        inputsStates={{ setTitle, setContent, setColor }}
+        entriesStates={{ entries, setSelectedEntry }}
+      />
 
       <Form
         openFormStates={{ visibilityForm, handleVisibilityForm }}

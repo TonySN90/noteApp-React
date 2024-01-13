@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Button from "../elements/Button";
+import ButtonsGroup from "../form/ButtonsGroup.jsx";
 import InputTitle from "./InputTitle";
 import InputTextarea from "./inputTextarea";
 import InputColor from "./InputColor";
@@ -70,12 +71,12 @@ function Form({ openFormStates, inputsStates, entriesStates }) {
     <form id="form" className={visibilityForm ? "form-open" : "form-close"}>
       <InputTitle titleInput={title} onTitleInput={setTitle} />
       <InputTextarea textInput={content} onTextInput={setContent} />
-      <div className="button__area">
+      <ButtonsGroup>
         <Button buttonTyp="arrow-left" handler={closeForm} />
         <Button buttonTyp="download" handler={handleStore} />
         {isSelected && <Button buttonTyp="trash" handler={handleDelete} />}
         <InputColor color={color} onColor={setColor} />
-      </div>
+      </ButtonsGroup>
       <Alert message={alertMessage} opacityValue={alertOpacity} />
     </form>
   );
